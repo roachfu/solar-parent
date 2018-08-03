@@ -1,0 +1,17 @@
+.idea
+solar-parent.iml
+
+solar-common/.mvn
+solar-common/mvnw
+solar-common/mvnw.cmd
+solar-common/solar-common.iml
+solar-common/target
+
+solar-demo/.mvn
+solar-demo/mvnw
+solar-demo/mvnw.cmd
+solar-demo/solar-demo.iml
+solar-demo/target
+
+solar-generator/solar-generator.iml
+solar-generator/target
