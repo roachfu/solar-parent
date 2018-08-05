@@ -15,9 +15,9 @@ import java.sql.SQLException;
 public class DBUtils {
 
     private static final String DEFAULT_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DEFAULT_URL = "jdbc:mysql://192.168.56.2:3306/solar-parent?useUnicode=true&characterEncoding=utf-8";
+    private static final String DEFAULT_URL = "jdbc:mysql://192.168.56.2:3306/solar_parent?useUnicode=true&characterEncoding=utf-8";
     private static final String DEFAULT_USERNAME = "root";
-    private static final String DEFAULT_PASSWORD = "Fanshu_123456";
+    private static final String DEFAULT_CIPHER = "Fanshu_123456";
 
     private static Connection conn = null;
 
@@ -26,7 +26,7 @@ public class DBUtils {
         String driver = propertiesUtils.getProperty("jdbc.driver", DEFAULT_DRIVER);
         String url = propertiesUtils.getProperty("jdbc.url", DEFAULT_URL);
         String username = propertiesUtils.getProperty("jdbc.username", DEFAULT_USERNAME);
-        String password = propertiesUtils.getProperty("jdbc.password", DEFAULT_PASSWORD);
+        String password = propertiesUtils.getProperty("jdbc.password", DEFAULT_CIPHER);
         try {
             //1.加载驱动程序
             Class.forName(driver);
@@ -39,6 +39,8 @@ public class DBUtils {
             log.error("获取数据库连接有误", e);
         }
     }
+
+    private DBUtils(){}
 
     /**
      * 获取数据库连接
