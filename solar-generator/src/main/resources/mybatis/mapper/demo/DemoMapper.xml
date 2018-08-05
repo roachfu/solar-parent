@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roachfu.solar.demo.mapper.DemoMapper">
+
+    <sql id="demo_columns">
+            id,
+            demo_name,
+            demo_value,
+            demo_status,
+            is_del,
+            creator,
+            creator_id,
+            create_time,
+            editor,
+            editor_id,
+            edit_time
+    </sql>
+
+    <select id="selectList" resultType="Demo">
+        select <include refid="demo_columns"/> from tb_demo
+    </select>
+
+    <select id="selectOne" resultType="Demo">
+        select <include refid="demo_columns"/> from tb_demo where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Demo">
+        insert into tb_demo(
+        <include refid="demo_columns"/>
+        ) values (
+            #{id},
+            #{demoName},
+            #{demoValue},
+            #{demoStatus},
+            #{isDel},
+            #{creator},
+            #{creatorId},
+            #{createTime},
+            #{editor},
+            #{editorId},
+            #{editTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="Demo">
+        update tb_demo
+        <set>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="demoName != null">
+                demo_name = #{demoName}
+            </if>
+            <if test="demoValue != null">
+                demo_value = #{demoValue}
+            </if>
+            <if test="demoStatus != null">
+                demo_status = #{demoStatus}
+            </if>
+            <if test="isDel != null">
+                is_del = #{isDel}
+            </if>
+            <if test="creator != null">
+                creator = #{creator}
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId}
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+            <if test="editor != null">
+                editor = #{editor}
+            </if>
+            <if test="editorId != null">
+                editor_id = #{editorId}
+            </if>
+            <if test="editTime != null">
+                edit_time = #{editTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
