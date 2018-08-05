@@ -64,19 +64,17 @@ public class StringUtils {
         }
 
         String underscoreStr = underscore.toLowerCase();
-
-        int len = underscore.length();
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++) {
-            char c = underscoreStr.charAt(i);
-            if (c == UNDERSCORE) {
-                if (++i < len) {
-                    sb.append(Character.toUpperCase(underscoreStr.charAt(i)));
+        String[] splits = underscoreStr.split("_");
+        StringBuilder sb = new StringBuilder();
+        if (splits.length > 0){
+            sb = new StringBuilder(splits[0]);
+            for (int i = 1; i < splits.length; i++){
+                if (splits[i] != null && !"".equals(splits[i].trim())){
+                    sb.append(initialToUpperCase(splits[i]));
                 }
-            } else {
-                sb.append(c);
             }
         }
+
         if (initial) {
             return initialToUpperCase(sb.toString());
         }
@@ -111,16 +109,4 @@ public class StringUtils {
         }
         return String.valueOf(chars);
     }
-
-    public static void main(String[] args) {
-        String aaa = "app_version_fld";
-        System.out.println(underscoreToCamel(aaa));
-        aaa = "appVersionFld";
-        System.out.println(camelToUnderscore(aaa));
-
-        System.out.println(trimPrefix("tb_", "tb_demo"));
-        System.out.println(trimPrefix("tbs_", "tb_demo"));
-
-    }
-
 }
