@@ -1,22 +1,32 @@
 package com.roachfu.solar.pojo.base;
 
+import com.roachfu.solar.util.id.IdGenUtils;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 基类实体
+ *
  * @author roach
  * @date 2018/7/9 22:48
  */
 
 @Data
-public class BaseEntity implements Serializable{
+public class BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 7617759139232141464L;
 
     /**
      * 主键id
      */
     private Long id;
+
+    /**
+     * 是否删除：0=未删除；1=删除
+     */
+    private Integer isDel;
 
     /**
      * 创建人
@@ -47,6 +57,16 @@ public class BaseEntity implements Serializable{
      * 修改时间
      */
     private Date editTime;
+
+    public void init() {
+        this.setId(IdGenUtils.getFlowIdWorkerInstance().nextId());
+        this.setEditor("");
+        this.setEditorId(0L);
+        this.setEditTime(new Date());
+        this.setCreator("");
+        this.setCreatorId(0L);
+        this.setCreateTime(new Date());
+    }
 
     @Override
     public String toString() {
