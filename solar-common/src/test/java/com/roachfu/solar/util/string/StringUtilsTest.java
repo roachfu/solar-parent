@@ -19,4 +19,15 @@ public class StringUtilsTest {
         System.out.println(StringUtils.trimPrefix("tbs_", "tb_demo"));
     }
 
+    @Test
+    public void testUnderscoreToCamel() {
+        System.out.println(StringUtils.underscoreToCamel("aaa_", false));
+        System.out.println(StringUtils.underscoreToCamel("aaa__", false));
+        System.out.println(StringUtils.underscoreToCamel("___", false));
+        System.out.println(StringUtils.underscoreToCamel("_bb", false));
+        System.out.println(StringUtils.underscoreToCamel("_bb__", false));
+        System.out.println(StringUtils.underscoreToCamel("_bb__cc", false));
+        System.out.println(StringUtils.underscoreToCamel("bb_cc_dd", false));
+        System.out.println(StringUtils.underscoreToCamel("bb_cc_dd", true));
+    }
 }
